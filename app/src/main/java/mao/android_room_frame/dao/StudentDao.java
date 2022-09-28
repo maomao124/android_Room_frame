@@ -48,10 +48,9 @@ public interface StudentDao
      * 插入
      *
      * @param student 学生
-     * @return boolean
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    boolean insert(Student student);
+    void insert(Student student);
 
     /**
      * 插入列表
@@ -61,28 +60,30 @@ public interface StudentDao
     @Insert
     void insertList(List<Student> list);
 
+
     /**
      * 更新
      *
      * @param student 学生
-     * @return boolean
+     * @return int
      */
     @Update
-    boolean update(Student student);
+    int update(Student student);
+
 
     /**
      * 删除
      *
      * @param student 学生
-     * @return boolean
+     * @return int
      */
     @Delete
-    boolean delete(Student student);
+    int delete(Student student);
 
     /**
      * 删除所有
      */
-    @Query("delete from Student where 1=1")
+    @Query("delete from student where 1=1")
     void deleteAll();
 
 }

@@ -1,7 +1,9 @@
 package mao.android_room_frame.entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.Database;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -60,6 +62,7 @@ public class Student implements Serializable
      * @param sex  the sex
      * @param age  the age
      */
+    @Ignore
     public Student(Long id, String name, String sex, int age)
     {
         this.id = id;
