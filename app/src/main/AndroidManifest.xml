@@ -4,6 +4,7 @@
         package="mao.android_room_frame">
 
     <application
+            android:name=".application.MainApplication"
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
             android:fullBackupContent="@xml/backup_rules"
