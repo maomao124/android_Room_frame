@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity
     private EditText editText3;
     private EditText editText4;
 
+    /**
+     * 标签
+     */
     private static final String TAG = "MainActivity";
 
     @Override
@@ -235,6 +238,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * 查询所有
+     */
     @SuppressLint("SetTextI18n")
     private void queryAll()
     {
