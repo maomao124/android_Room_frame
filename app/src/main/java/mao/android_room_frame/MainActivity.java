@@ -2,6 +2,7 @@ package mao.android_room_frame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import mao.android_room_frame.application.MainApplication;
 import mao.android_room_frame.dao.StudentDao;
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                query();
             }
         });
 
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                queryAll();
             }
         });
 
@@ -193,7 +196,63 @@ public class MainActivity extends AppCompatActivity
             Log.e(TAG, "delete: ", e);
             toastShow("异常：" + e.getMessage());
         }
+    }
 
+    /**
+     * 查询
+     */
+    private void query()
+    {
+        try
+        {
+            if (editText1.getText().toString().equals(""))
+            {
+                toastShow("学号为空");
+                return;
+            }
+            long id = Long.parseLong(editText1.getText().toString());
+
+            Student student = studentDao.query(id);
+            if (student == null)
+            {
+                toastShow("查询不到学号为" + id + "的信息");
+                editText1.setText("");
+                editText2.setText("");
+                editText3.setText("");
+                editText4.setText("");
+                return;
+            }
+            editText1.setText(String.valueOf(id));
+            editText2.setText(student.getName());
+            editText3.setText(student.getSex());
+            editText4.setText(String.valueOf(student.getAge()));
+            toastShow("查询成功");
+        }
+        catch (Exception e)
+        {
+            Log.e(TAG, "query: ", e);
+            toastShow("异常：" + e.getMessage());
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void queryAll()
+    {
+        try
+        {
+            textView.setText("");
+            List<Student> studentList = studentDao.queryAll();
+            for (Student student : studentList)
+            {
+                textView.setText(textView.getText() + "\n\n" + student.toString());
+            }
+            toastShow("查询到" + studentList.size() + "条数据");
+        }
+        catch (Exception e)
+        {
+            Log.e(TAG, "queryAll: ", e);
+            toastShow("异常：" + e.getMessage());
+        }
     }
 
     /**

@@ -49,7 +49,8 @@ public interface StudentDao
      *
      * @param student 学生
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert()
+    //@Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Student student);
 
     /**
