@@ -2,6 +2,8 @@ package mao.android_room_frame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                update();
             }
         });
 
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                delete();
             }
         });
 
@@ -116,6 +118,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * 更新
+     */
     private void update()
     {
         try
@@ -145,7 +150,49 @@ public class MainActivity extends AppCompatActivity
             Log.e(TAG, "update: ", e);
             toastShow("异常：" + e.getMessage());
         }
+    }
 
+    /**
+     * 删除
+     */
+    private void delete()
+    {
+        try
+        {
+            if (editText1.getText().toString().equals(""))
+            {
+                toastShow("学号为空");
+                return;
+            }
+            long id = Long.parseLong(editText1.getText().toString());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("删除确认")
+                    .setMessage("是否删除学号为" + id + "的信息？")
+                    .setPositiveButton("确认", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            int delete = studentDao.delete(new Student(id, null, null, 0));
+                            if (delete <= 0)
+                            {
+                                toastShow("删除失败");
+                                return;
+                            }
+                            toastShow("删除成功");
+                        }
+                    })
+                    .setNegativeButton("取消", null)
+                    .create()
+                    .show();
+
+        }
+        catch (Exception e)
+        {
+            Log.e(TAG, "delete: ", e);
+            toastShow("异常：" + e.getMessage());
+        }
 
     }
 
