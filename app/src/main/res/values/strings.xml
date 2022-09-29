@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">android_Room_frame</string>
+
+    <string name="s">insert and clear</string>
+    <string name="l">批量添加和清空数据</string>
+
 </resources>

@@ -21,11 +21,11 @@
     <!-- </capability> -->
 
     <shortcut
-            android:shortcutId="second"
+            android:shortcutId="f"
             android:enabled="true"
             android:icon="@mipmap/ic_launcher"
-            android:shortcutShortLabel="add and clear"
-            android:shortcutLongLabel="批量添加数据和清空数据">
+            android:shortcutShortLabel="@string/s"
+            android:shortcutLongLabel="@string/l">
         <!-- targetClass指定了点击该项菜单后要打开哪个活动页面 -->
         <intent
                 android:action="android.intent.action.VIEW"
