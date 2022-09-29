@@ -15,6 +15,9 @@
             android:theme="@style/Theme.Android_Room_frame"
             tools:targetApi="31">
         <activity
+                android:name=".MainActivity2"
+                android:exported="false" />
+        <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
@@ -22,6 +25,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- 指定快捷方式。在桌面上长按应用图标，就会弹出@xml/shortcuts所描述的快捷菜单 -->
+            <meta-data
+                    android:name="android.app.shortcuts"
+                    android:resource="@xml/shortcuts" />
+
+
         </activity>
     </application>
 
